@@ -1,4 +1,4 @@
-FROM php:7.1-fpm
+FROM php:5.5-fpm
 MAINTAINER gan068<bleedkaga.ogre@gmail.com>
 
 ENV TZ=Asia/Taipei
@@ -17,7 +17,6 @@ RUN apt-get update && apt-get install -y \
         git \
         vim \
         unzip \
-        cron \
     && docker-php-ext-install -j$(nproc) iconv mcrypt mysqli pdo_mysql soap zip sockets fileinfo exif \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd
