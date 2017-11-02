@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y \
         libaio1 \
         libaio-dev \
         freetds-dev \
-	cron \
+        cron \
         supervisor \
     && docker-php-ext-install -j$(nproc) iconv mcrypt mysqli pdo_mysql soap zip sockets fileinfo exif \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
