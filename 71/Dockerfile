@@ -5,6 +5,10 @@ ENV TZ=Asia/Taipei
 ADD ./*.zip /opt/oracle/
 ADD ./vim/.vimrc /root/.vimrc
 ADD ./vim/.vim/colors/* /root/.vim/colors/
+
+#supervisor config
+ADD  ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
@@ -17,7 +21,7 @@ RUN apt-get update && apt-get install -y \
         libaio1 \
         libaio-dev \
         freetds-dev \
-        cron \
+        supervisor \
     && docker-php-ext-install -j$(nproc) iconv mcrypt mysqli pdo_mysql soap zip sockets fileinfo exif \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd \
@@ -44,3 +48,4 @@ RUN docker-php-ext-configure pdo_oci --with-pdo-oci=instantclient,/opt/oracle/in
     && docker-php-ext-enable \
        oci8
 WORKDIR /var/www/html
+CMD ["/usr/bin/supervisord"]
