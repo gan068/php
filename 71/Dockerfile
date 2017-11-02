@@ -17,7 +17,8 @@ RUN apt-get update && apt-get install -y \
         libaio1 \
         libaio-dev \
         freetds-dev \
-    && docker-php-ext-install -j$(nproc) iconv mcrypt mysqli pdo_mysql soap zip sockets fileinfo exif\
+        cron \
+    && docker-php-ext-install -j$(nproc) iconv mcrypt mysqli pdo_mysql soap zip sockets fileinfo exif \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd \
     && sed -i "12a tds version = 8.0" /etc/freetds/freetds.conf
