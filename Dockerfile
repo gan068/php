@@ -5,12 +5,15 @@ ENV TZ=Asia/Taipei
 ADD ./*.zip /opt/oracle/
 ADD ./vim/.vimrc /root/.vimrc
 ADD ./vim/.vim/colors/* /root/.vim/colors/
+ADD ./fonts/*.ttc /usr/share/fonts/
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
         libpng12-dev \
         libxml2-dev \
+        libxrender1 \
+        libfontconfig1 \
         git \
         vim \
         unzip \
